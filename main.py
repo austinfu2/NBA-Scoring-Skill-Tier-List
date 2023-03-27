@@ -53,17 +53,13 @@ def submit():
             # create a cursor object
             cursor = conn.cursor()
 
-            for i in range(1, 11):
+            for i in range(0, 10):
                 dropzone_id = f"dropzone-{i}"
-                player_id = request.form.get(dropzone_id)
-                if player_id:
-                    cursor.execute("INSERT INTO player_positions (player_id, position) VALUES (?, ?)", (player_id, dropzone_id))
-        # commit the changes
-        conn.commit()
 
-        return render_template("templates/results.html", message="Data successfully saved to database.")
+
+        return render_template("results.html", message="Data successfully saved to database.")
     except Exception as e:
-        return render_template("templates/results.html", message=f"Error: {e}")
+        return render_template("results.html", message=f"Error: {e}")
 
 # define the route for the results page
 @app.route('/results')
