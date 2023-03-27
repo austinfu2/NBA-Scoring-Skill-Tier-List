@@ -3,6 +3,7 @@ import random
 import sqlite3
 from flask import Flask, request, render_template, url_for
 from bs4 import BeautifulSoup
+import csv
 
 app = Flask(__name__)
 
@@ -15,15 +16,27 @@ random.shuffle(player_images)
 with open("templates/index.html") as file:
     soup = BeautifulSoup(file, 'html.parser')
 
+def get_player_name(player_id):
+    with open('static/names.csv', encoding="utf-8") as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            if row[0] == player_id:
+                return row[1]
+    return None
+
+with open("templates/index.html") as file:
+    soup = BeautifulSoup(file, 'html.parser')
+
 @app.route('/')
 def home():
     # find all the image tags and update their src attributes with the random filenames
     for i, img in enumerate(soup.find_all('img', class_='player-image')):
         img['src'] = f"{{{{ url_for('static', filename='player_faces/{player_images[i]}') }}}}"
         img.parent['data-image'] = player_images[i][:-4]
+        img.parent['data-player-name'] = get_player_name(img.parent['data-image'])
 
     # save the updated HTML back to the file
-    with open("templates/index.html", "w") as output_file:
+    with open("templates/index.html", "w", encoding="utf-8") as output_file:
         output_file.write(str(soup))
     return render_template("index.html", player_images=player_images)
 
