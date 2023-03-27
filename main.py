@@ -4,6 +4,8 @@ import sqlite3
 from flask import Flask, request, render_template, url_for
 from bs4 import BeautifulSoup
 import csv
+import re
+
 
 app = Flask(__name__)
 
@@ -21,10 +23,12 @@ def get_player_name(player_id):
         reader = csv.reader(csvfile)
         for row in reader:
             if row[0] == player_id:
-                return row[1]
+                player_name = row[1]
+                player_name_fixed = re.sub('[^a-zA-Z0-9 \n\.]', '', player_name)
+                return player_name_fixed
     return None
 
-with open("templates/index.html") as file:
+with open("templates/index.html", encoding="utf-8") as file:
     soup = BeautifulSoup(file, 'html.parser')
 
 @app.route('/')
@@ -57,14 +61,14 @@ def submit():
         # commit the changes
         conn.commit()
 
-        return render_template("results.html", message="Data successfully saved to database.")
+        return render_template("templates/results.html", message="Data successfully saved to database.")
     except Exception as e:
-        return render_template("results.html", message=f"Error: {e}")
+        return render_template("templates/results.html", message=f"Error: {e}")
 
 # define the route for the results page
 @app.route('/results')
 def results():
-    return render_template("results.html")
+    return render_template("templates/results.html")
 
 # add a context processor to make the player_images list available to all templates
 @app.context_processor
