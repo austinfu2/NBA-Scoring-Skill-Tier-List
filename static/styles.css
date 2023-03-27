@@ -1,0 +1,116 @@
+
+#title {
+  text-align: center;
+  padding: 20px 100px;
+}
+
+/* Styling for the table */
+table {
+  width: 80%;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+th {
+  background-color: #55b9f3;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px;
+  text-align: center;
+}
+
+td {
+  word-wrap:break-word;
+  vertical-align: middle;
+}
+
+table tr td:last-child {
+  width: 100%;
+  }
+
+/* Styling for the player images */
+
+.imagebox {
+  position: relative;
+  width: 10%;
+     display: inline-block;
+  flex-basis: calc(33.33% - 20px); /* adjust as needed to get 3 images per row */
+  margin: 10px;
+  text-align: center;
+}
+
+.imagebox img {
+  display: inline-block;
+  width: 75%;
+  height: auto;
+}
+
+.imagebox:hover p {
+  visibility: visible;
+}
+
+.player-image {
+  border: 5px solid #fff;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+
+.player-image:hover {
+  transform: scale(1.1);
+}
+
+.table tr td .player-image{
+  height: 120px;
+}
+
+.overlay_text {
+  position:absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  color: white;
+  visibility: hidden;
+}
+
+/* cta button */
+#cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-block: 40px 70px;
+}
+/* footer */
+#footer {
+  text-align: center;
+  background-color: #212529;
+  color: #fff;
+  padding: 15px;
+}
+
+#footer p {
+  margin: 0;
+}
+
+.line-text {
+  font-family: 'Arial';
+  text-align: center;
+  width: 100%;
+  margin: 0px auto;
+  font-size: 80px;
+  letter-spacing: 5px;
+}
+
+#player-images {
+  display: flex;
+  flex-wrap: wrap;
+}
