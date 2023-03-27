@@ -56,7 +56,7 @@
 
   $(document).ready(function() {
   $('.imagebox').each(function() {
-    var dataImage = $(this).attr('data-image');
+    var dataImage = $(this).attr('data-player-name');
     $(this).find('.overlay_text').text(dataImage);
   });
 });
@@ -133,56 +133,56 @@
 <!-- Player Images -->
 <section id="player-images">
 <div class="image-container dropzone" id="dropzone-players" ondragover="allowDrop(event)" ondrop="drop(event)">
-<div class="imagebox" data-image="robyis01" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/robyis01.jpg') }}"/>
+<div class="imagebox" data-image="carteje01" data-player-name="Jevon Carter" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
+<img class="player-image" data-player-name="Romeo Langford" src="{{ url_for('static', filename='player_faces/carteje01.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="forretr01" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/forretr01.jpg') }}"/>
+<div class="imagebox" data-image="azubuud01" data-player-name="Udoka Azubuike" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Jaxson Hayes" src="{{ url_for('static', filename='player_faces/azubuud01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="smartma01" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/smartma01.jpg') }}"/>
+<div class="imagebox" data-image="portibo01" data-player-name="Bobby Portis" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Tyler Herro" src="{{ url_for('static', filename='player_faces/portibo01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text">I</p>
 </div>
 </div>
-<div class="imagebox" data-image="walljo01" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/walljo01.jpg') }}"/>
+<div class="imagebox" data-image="hayesja02" data-player-name="Jaxson Hayes" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="James Johnson" src="{{ url_for('static', filename='player_faces/hayesja02.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text">I</p>
 </div>
 </div>
-<div class="imagebox" data-image="townska01" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/townska01.jpg') }}"/>
+<div class="imagebox" data-image="siakapa01" data-player-name="Pascal Siakam" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Greg Brown III" src="{{ url_for('static', filename='player_faces/siakapa01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="porteot01" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/porteot01.jpg') }}"/>
+<div class="imagebox" data-image="josepco01" data-player-name="Cory Joseph" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Danny Green" src="{{ url_for('static', filename='player_faces/josepco01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="leoname01" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/leoname01.jpg') }}"/>
+<div class="imagebox" data-image="mannte01" data-player-name="Terance Mann" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Isaac Okoro" src="{{ url_for('static', filename='player_faces/mannte01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="vandeja01" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/vandeja01.jpg') }}"/>
+<div class="imagebox" data-image="looneke01" data-player-name="Kevon Looney" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Jalen Suggs" src="{{ url_for('static', filename='player_faces/looneke01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="whiteja03" draggable="true" id="p9" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/whiteja03.jpg') }}"/>
+<div class="imagebox" data-image="herroty01" data-player-name="Tyler Herro" draggable="true" id="p9" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Joe Ingles" src="{{ url_for('static', filename='player_faces/herroty01.jpg') }}"/>
 <div class="overlay">
-<p class="overlay_text">ITS YA BOI AUSTIN</p>
+<p class="overlay_text"></p>
 </div>
 </div>
 </div>
@@ -194,7 +194,7 @@
 </section>
 <!-- Footer -->
 <footer id="footer">
-<p>© Copyright 2023</p>
+<p>Â© Copyright 2023</p>
 </footer>
 </body>
 </html>
