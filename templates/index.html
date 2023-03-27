@@ -19,7 +19,7 @@
     ev.preventDefault();
   }
 
-  function drag(ev) { 
+  function drag(ev) {
     const imagebox = ev.target.closest('.imagebox')
     ev.dataTransfer.setData("text", imagebox.id);
   }
@@ -31,23 +31,6 @@
     const dropzone = ev.target.closest('.dropzone')
     dropzone.appendChild(element);
   }
-<!--  window.onload = function () {-->
-<!--    const submitButton = document.querySelector('.submit-button')-->
-<!--    submitButton.addEventListener('click', (event) => {-->
-<!--       const dropzones = document.querySelectorAll('.dropzone')-->
-<!--       const result = {}-->
-<!--       dropzones.forEach(dropzone => {-->
-<!--          const imageboxes = dropzone.querySelectorAll('.imagebox')-->
-<!--          const imageboxesArray = [...imageboxes]-->
-<!--          const names = imageboxesArray.map(imagebox => {-->
-<!--            console.log('imagebox:', imagebox)-->
-<!--            return imagebox.dataset.image-->
-<!--          })-->
-<!--          result[dropzone.id] = names-->
-<!--       })-->
-<!--       console.log('result:', result)-->
-<!--    })-->
-<!--  }-->
 
   $(document).ready(function() {
   $('.imagebox').each(function() {
@@ -56,6 +39,41 @@
   });
 });
 
+$(document).ready(function() {
+  $('.submit-button').click(function(e) {
+    e.preventDefault();
+
+    // Collect the data-image and data-player-name attributes of all image boxes
+    var data = [];
+    $('.dropzone').each(function() {
+      var dropzone_id = $(this).attr('id');
+      $(this).find('.imagebox').each(function() {
+        var data_image = $(this).attr('data-image');
+        console.log(data_image)
+        var data_player_name = $(this).attr('data-player-name');
+        data.push({
+          'dropzone_id': dropzone_id,
+          'data_image': data_image,
+          'data_player_name': data_player_name
+        });
+      });
+    });
+
+    // Send an AJAX request to a Flask route that handles the database insertion
+    $.ajax({
+      type: 'POST',
+      url: '/insert',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      success: function(response) {
+        console.log("success");
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+});
 </script>
 </head>
 <body>
@@ -128,48 +146,48 @@
 <!-- Player Images -->
 <section id="player-images">
 <div class="image-container dropzone" id="dropzone-0" ondragover="allowDrop(event)" ondrop="drop(event)">
-<div class="imagebox" data-image="mcdanja02" data-player-name="Jaden McDaniels" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/mcdanja02.jpg') }}"/>
+<div class="imagebox" data-image="tateja01" data-player-name="JaeSean Tate" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/tateja01.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="gilgesh01" data-player-name="Shai GilgeousAlexander" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/gilgesh01.jpg') }}"/>
+<div class="imagebox" data-image="johnsal02" data-player-name="Alize Johnson" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/johnsal02.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="williro04" data-player-name="Robert Williams" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/williro04.jpg') }}"/>
+<div class="imagebox" data-image="weslebl01" data-player-name="Blake Wesley" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/weslebl01.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text">I</p>
 </div>
 </div>
-<div class="imagebox" data-image="banchpa01" data-player-name="Paolo Banchero" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/banchpa01.jpg') }}"/>
+<div class="imagebox" data-image="beysa01" data-player-name="Saddiq Bey" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/beysa01.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text">I</p>
 </div>
 </div>
-<div class="imagebox" data-image="kispeco01" data-player-name="Corey Kispert" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Greg Brown III" src="{{ url_for('static', filename='player_faces/kispeco01.jpg') }}"/>
+<div class="imagebox" data-image="dotsode01" data-player-name="Devon Dotson" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Greg Brown III" src="{{ url_for('static', filename='player_faces/dotsode01.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="morrima03" data-player-name="Marcus Morris" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Danny Green" src="{{ url_for('static', filename='player_faces/morrima03.jpg') }}"/>
+<div class="imagebox" data-image="martica02" data-player-name="Caleb Martin" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Danny Green" src="{{ url_for('static', filename='player_faces/martica02.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="metuch01" data-player-name="Chimezie Metu" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Isaac Okoro" src="{{ url_for('static', filename='player_faces/metuch01.jpg') }}"/>
+<div class="imagebox" data-image="simonan01" data-player-name="Anfernee Simons" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Isaac Okoro" src="{{ url_for('static', filename='player_faces/simonan01.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text"></p>
 </div>
 </div>
-<div class="imagebox" data-image="bullore01" data-player-name="Reggie Bullock" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/bullore01.jpg') }}"/>
+<div class="imagebox" data-image="lavinza01" data-player-name="Zach LaVine" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/lavinza01.jpg') }}"/>
 <div class="overlay">
 <p class="overlay_text"></p>
 </div>
@@ -178,8 +196,11 @@
 </section>
 <!-- Call to Action -->
 <section id="cta">
+<form action="/submit" method="post">
+<input name="html" type="hidden" value="{{ current_page_html }}"/>
 <a href="{{ url_for('submit') }}">
-<button "="" class="btn btn-dark btn-lg submit-button" type="submit">Submit</button></a>
+<button class="btn btn-dark btn-lg submit-button" id="submit-button" type="submit">Submit</button></a>
+</form>
 <h3 class="cta-heading">Submit to see the players' average rankings</h3>
 </section>
 <!-- Footer -->
