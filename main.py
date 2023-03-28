@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import csv
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # get a list of all player image filenames in the player_faces folder
 player_images = os.listdir("static/player_faces")
@@ -27,7 +27,7 @@ with open("templates/index.html", encoding="utf-8") as file:
     soup = BeautifulSoup(file, 'html.parser')
 
 @app.route('/')
-def home():
+def index():
     # find all the image tags and update their src attributes with the random filenames
     for i, img in enumerate(soup.find_all('img', class_='player-image')):
         img['src'] = f"{{{{ url_for('static', filename='player_faces/{player_images[i]}') }}}}"
@@ -38,14 +38,10 @@ def home():
     with open("templates/index.html", "w", encoding="utf-8") as output_file:
         output_file.write(str(soup))
 
-    # Get the current page HTML
-    with open('templates/index.html', 'r') as f:
-        current_page_html = f.read()
+    return render_template('index.html')
 
-    return render_template('index.html', current_page_html=current_page_html)
-
-@app.route('/insert', methods=['POST'])
-def insert():
+@app.route('/results', methods=['POST'])
+def results():
     # Get the data from the AJAX request
     data = request.get_json()
 
@@ -59,26 +55,22 @@ def insert():
         data_image = record['data_image']
         data_player_name = record['data_player_name']
         c.execute("INSERT INTO player_real (dropzone_id, data_image, data_player_name) VALUES (?, ?, ?)", (dropzone_id, data_image, data_player_name))
+
+    # Calculate the average dropzone ranking for the 8 players
+    player_averages = {}
+    for record in data:
+        player_id = record['data_image']
+        c.execute("SELECT AVG(CAST(SUBSTR(dropzone_id, 10) AS INTEGER)) FROM player_real WHERE data_image = ?",
+                  (player_id,))
+        avg_ranking = c.fetchone()[0]
+        player_averages[player_id] = avg_ranking
+
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
 
     # Return a success response
-    return render_template("results.html")
-
-@app.route('/submit', methods=["GET", "POST"])
-def submit():
-    return render_template("results.html")
-
-# define the route for the results page
-@app.route('/results')
-def results():
-    return render_template("results.html")
-
-# add a context processor to make the player_images list available to all templates
-#@app.context_processor
-#def inject_player_images():
-#    return dict(player_images=player_images)
+    return render_template("results.html", player_averages=player_averages)
 
 if __name__ == "__main__":
     app.run(debug=True)
