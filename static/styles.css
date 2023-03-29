@@ -9,6 +9,7 @@ table {
   width: 80%;
   background-color: #f7f7f7;
   font-family: Arial, sans-serif;
+    table-layout: fixed;
 }
 
 th {
@@ -17,13 +18,30 @@ th {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 15px;
+  padding: 1px;
   text-align: center;
 }
 
 td {
   word-wrap:break-word;
   vertical-align: middle;
+    text-align: center;
+      padding: 5px;
+
+}
+.image-container {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    padding: 10px;
+}
+
+td .dropzone {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .image-container.dropzone * {
@@ -31,30 +49,19 @@ td {
   height: 150px;
 }
 
-/* Styling for the player images */
-.image-container.dropzone {
-  position: relative;
-}
-
 .image-container.dropzone img {
   display: block;
-  max-width: 100%;
-  height: auto;
 }
 
 .imagebox {
   position: relative;
-  width: 10%;
-     display: inline-block;
-  flex-basis: calc(33.33% - 20px); /* adjust as needed to get 3 images per row */
+  display:  inline-block;
   margin: 10px;
-  text-align: center;
+    vertical-align: top;
 }
 
 .imagebox img {
-  display: inline-block;
-  height: 80px;
-  weight: 50px;
+  max-width: 100%;
 }
 
 .imagebox:hover p {
@@ -80,12 +87,18 @@ td {
 
 .overlay_text {
   position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 50% auto;
   background-color: blue;
   color: white;
   visibility: hidden;
+  text-align: center; /* center the text horizontally */
+  display: flex; /* enable vertical centering */
+  justify-content: center; /* center the text vertically */
+  align-items: center; /* center the text vertically */
 }
 
 /* cta button */
@@ -116,9 +129,4 @@ td {
   margin: 0px auto;
   font-size: 80px;
   letter-spacing: 5px;
-}
-
-#player-images {
-  display: flex;
-  flex-wrap: wrap;
 }
