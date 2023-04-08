@@ -9,7 +9,7 @@ table {
   width: 80%;
   background-color: #f7f7f7;
   font-family: Arial, sans-serif;
-    table-layout: fixed;
+  table-layout: fixed;
 }
 
 th {
@@ -20,15 +20,24 @@ th {
   letter-spacing: 2px;
   padding: 1px;
   text-align: center;
+  vertical-align: middle;
 }
 
 td {
   word-wrap:break-word;
   vertical-align: middle;
-    text-align: center;
-      padding: 5px;
-
+  text-align: center;
+  padding: 5px;
+  height: 90px;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
 }
+
+.table-responsive {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
 .image-container {
   border: 2px dashed #ccc;
   border-radius: 5px;
@@ -45,8 +54,8 @@ td .dropzone {
 }
 
 .image-container.dropzone * {
-  width: 110px;
-  height: 150px;
+  width: 90px;
+  max-height: 130px;
 }
 
 .image-container.dropzone img {
@@ -56,7 +65,7 @@ td .dropzone {
 .imagebox {
   position: relative;
   display:  inline-block;
-  margin: 10px;
+  margin: 5px;
     vertical-align: top;
 }
 
@@ -68,10 +77,14 @@ td .dropzone {
   visibility: visible;
 }
 
+#player-images {
+  margin: 2%;
+  margin-bottom: 1%;
+}
+
 .player-image {
   border: 5px solid #fff;
   border-radius: 50%;
-  margin: 10px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   display: block;
@@ -82,7 +95,7 @@ td .dropzone {
 }
 
 .table tr td .player-image{
-  height: 120px;
+  height: 100px;
 }
 
 .overlay_text {
