@@ -143,3 +143,9 @@ td .dropzone {
   font-size: 80px;
   letter-spacing: 5px;
 }
+
+#myChart {
+   margin-left:100px;
+     max-width: 2600px;
+    height: 1000px;
+}
