@@ -7,6 +7,12 @@
 <title>Austinfu2's NBA Scoring Skill Tier List</title>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet"/>
 <link href="static/styles.css" rel="stylesheet"/>
+<!-- Include our Javascript -->
+<script defer="" src="static/script.js"></script>
+<!-- Load the Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Load the chartjs-plugin-datalabels plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -15,64 +21,6 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;9000&amp;family=Ubuntu:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
 <script>
-  function allowDrop(ev) {
-    ev.preventDefault();
-  }
-
-  function drag(ev) {
-    const imagebox = ev.target.closest('.imagebox')
-    ev.dataTransfer.setData("text", imagebox.id);
-  }
-
-  function drop(ev) {
-    ev.preventDefault();  1
-    var data = ev.dataTransfer.getData("text");
-    const element = document.getElementById(data)
-    const dropzone = ev.target.closest('.dropzone')
-    dropzone.appendChild(element);
-  }
-
-  $(document).ready(function() {
-  $('.imagebox').each(function() {
-    var dataImage = $(this).attr('data-player-name');
-    $(this).find('.overlay_text').text(dataImage);
-  });
-});
-
-$(document).ready(function() {
-  $('.submit-button').click(function(e) {
-    e.preventDefault();
-
-    // Collect the data-image and data-player-name attributes of all image boxes
-    var data = [];
-    $('.dropzone').each(function() {
-      var dropzone_id = $(this).attr('id');
-      $(this).find('.imagebox').each(function() {
-        var data_image = $(this).attr('data-image');
-        var data_player_name = $(this).attr('data-player-name');
-        data.push({
-          'dropzone_id': dropzone_id,
-          'data_image': data_image,
-          'data_player_name': data_player_name
-        });
-      });
-    });
-
-    // Send an AJAX request to a Flask route that handles the database insertion
-    $.ajax({
-      type: 'POST',
-      url: '/results',
-      data: JSON.stringify(data),
-      contentType: 'application/json',
-      success: function(response) {
-      },
-      error: function(error) {
-        console.log(error);
-     }
-    });
-  });
-});
-
 </script>
 </head>
 <body>
@@ -87,36 +35,38 @@ $(document).ready(function() {
 <!-- Player Images -->
 <section id="player-images">
 <div class="image-container dropzone" id="dropzone-0" ondragover="allowDrop(event)" ondrop="drop(event)">
-<div class="imagebox" data-image="bertada01" data-player-name="Dvis Bertns" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/bertada01.jpg') }}"/>
+<div class="imagebox" data-image="maxeyty01" data-player-age="22" data-player-name="Tyrese Maxey" data-player-ppg="20.3" draggable="true" id="p1" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)" title="MAHCUS SMART">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/maxeyty01.jpg') }}"/>
+<p class="overlay_text"></p>
+<p class="player_age"></p>
+<p class="player_ppg"></p>
+</div>
+<div class="imagebox" data-image="paytoga02" data-player-age="30" data-player-name="Gary Payton II" data-player-ppg="4.6" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/paytoga02.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="huntede01" data-player-name="DeAndre Hunter" draggable="true" id="p2" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/huntede01.jpg') }}"/>
-<p class="overlay_text"></p>
-</div>
-<div class="imagebox" data-image="brunsja01" data-player-name="Jalen Brunson" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/brunsja01.jpg') }}"/>
+<div class="imagebox" data-image="mykhasv01" data-player-age="25" data-player-name="Svi Mykhailiuk" data-player-ppg="6.9" draggable="true" id="p3" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/mykhasv01.jpg') }}"/>
 <p class="overlay_text">I</p>
 </div>
-<div class="imagebox" data-image="knoxke01" data-player-name="Kevin Knox" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/knoxke01.jpg') }}"/>
+<div class="imagebox" data-image="noelne01" data-player-age="28" data-player-name="Nerlens Noel" data-player-ppg="2.1" draggable="true" id="p4" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/noelne01.jpg') }}"/>
 <p class="overlay_text">I</p>
 </div>
-<div class="imagebox" data-image="jeromty01" data-player-name="Ty Jerome" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Greg Brown III" src="{{ url_for('static', filename='player_faces/jeromty01.jpg') }}"/>
+<div class="imagebox" data-image="littlna01" data-player-age="22" data-player-name="Nassir Little" data-player-ppg="6.6" draggable="true" id="p5" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Greg Brown III" src="{{ url_for('static', filename='player_faces/littlna01.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="halibty01" data-player-name="Tyrese Haliburton" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Danny Green" src="{{ url_for('static', filename='player_faces/halibty01.jpg') }}"/>
+<div class="imagebox" data-image="lowryky01" data-player-age="36" data-player-name="Kyle Lowry" data-player-ppg="11.2" draggable="true" id="p6" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Danny Green" src="{{ url_for('static', filename='player_faces/lowryky01.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="gordoer01" data-player-name="Eric Gordon" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" data-player-name="Isaac Okoro" src="{{ url_for('static', filename='player_faces/gordoer01.jpg') }}"/>
+<div class="imagebox" data-image="morrima03" data-player-age="33" data-player-name="Marcus Morris" data-player-ppg="11.2" draggable="true" id="p7" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" data-player-name="Isaac Okoro" src="{{ url_for('static', filename='player_faces/morrima03.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
-<div class="imagebox" data-image="morrima03" data-player-name="Marcus Morris" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
-<img class="player-image" src="{{ url_for('static', filename='player_faces/morrima03.jpg') }}"/>
+<div class="imagebox" data-image="leonaka01" data-player-age="31" data-player-name="Kawhi Leonard" data-player-ppg="23.8" draggable="true" id="p8" ondragover="allowDrop(event)" ondragstart="drag(event)" ondrop="drop(event)">
+<img class="player-image" src="{{ url_for('static', filename='player_faces/leonaka01.jpg') }}"/>
 <p class="overlay_text"></p>
 </div>
 </div>
@@ -172,14 +122,21 @@ $(document).ready(function() {
 </div>
 <!-- Call to Action -->
 <section id="cta">
-<form action="{{ url_for('results') }}" method="post">
+<form action="{{ url_for('submit') }}" method="post">
 <button class="btn btn-dark btn-lg submit-button" id="submit-button" type="submit">Submit</button>
 </form>
 <h3 class="cta-heading">Submit to see the players' average rankings</h3>
+</section>
+<section id="results">
+<canvas id="myChart"></canvas>
+<script src="app.js"></script>
 </section>
 <!-- Footer -->
 <footer id="footer">
 <p>Copyright 2023</p>
 </footer>
+<script>
+  var players = {{ players|tojson }};
+</script>
 </body>
 </html>
